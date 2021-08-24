@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { __prod__ } from './constants';
-// import { Post } from './entities/Post';
 import express from 'express';
 import 'dotenv-safe/config';
 import { ApolloServer } from 'apollo-server-express';
@@ -41,6 +40,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     playground: true,
+    introspection: true,
     schema: await buildSchema({
       resolvers: [PostResolver],
       validate: false,
