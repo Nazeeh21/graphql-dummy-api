@@ -17,6 +17,7 @@ import path from 'path';
 
 const main = async () => {
 
+  // @ts-ignore
   const conn = await createConnection({
     type: 'postgres',
     url: process.env.DATABASE_URL,
@@ -29,7 +30,7 @@ const main = async () => {
     entities: [Post],
   });
 
-  await conn.runMigrations()
+  // await conn.runMigrations()
 
   const app = express();
 
