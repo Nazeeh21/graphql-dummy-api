@@ -17,7 +17,6 @@ import path from 'path';
 
 const main = async () => {
 
-  // @ts-ignore
   const conn = await createConnection({
     type: 'postgres',
     url: process.env.DATABASE_URL,
@@ -27,9 +26,7 @@ const main = async () => {
     entities: [Post],
   });
 
-  // await conn.runMigrations()
-
-  // await Post.delete({})
+  await conn.runMigrations()
 
   const app = express();
 
@@ -39,8 +36,8 @@ const main = async () => {
   app.set('trust proxy', 1);
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN,
-      // origin: 'https://devdit-kcbamcz6y-nazeeh2000.vercel.app',
+      // origin: process.env.CORS_ORIGIN,
+      origin: '*',
       credentials: true,
     })
   );
