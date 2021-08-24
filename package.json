@@ -55,5 +55,9 @@
       "./src/mikro-orm.config.ts",
       "./dist/mikro-orm.config.js"
     ]
-  }
+  },
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.*"
+  },
 }
