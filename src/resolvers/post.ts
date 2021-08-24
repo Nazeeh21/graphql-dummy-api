@@ -8,11 +8,9 @@ import {
   Query,
   Resolver,
   Root,
-  UseMiddleware
 } from 'type-graphql';
 import { getConnection } from 'typeorm';
 import { Post } from '../entities/Post';
-import { isAuth } from '../middleware/isAuth';
 
 @InputType()
 class PostInput {
@@ -91,14 +89,12 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  @UseMiddleware(isAuth)
   async createPost(@Arg('input') input: PostInput): Promise<Post> {
     // 2 sql queries
     return Post.create({ ...input }).save();
   }
 
   @Mutation(() => Post, { nullable: true })
-  @UseMiddleware(isAuth)
   async updatePost(
     @Arg('id', () => Int) id: number,
     @Arg('title', { nullable: true }) title: string,
